@@ -1,6 +1,6 @@
 <template>
   <div>
-    Home View
+    Details ?
   </div>
 </template>
 
