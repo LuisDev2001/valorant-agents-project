@@ -6,7 +6,6 @@ const agents = ref<Agent[]>([])
 const isLoading = ref(true)
 
 const useAgents = () => {
-
   onMounted(() => {
     getAgentsList()
   })

@@ -4,8 +4,8 @@ import type { Agent } from '@/interfaces/AgentInterface'
 
 const agent = ref<Agent>()
 const isLoading = ref(true)
-const useCharacterById = (uuid:string) => {
 
+const useCharacterById = (uuid:string) => {
   onMounted(() => {
     getAgentDataById(uuid)
   })
