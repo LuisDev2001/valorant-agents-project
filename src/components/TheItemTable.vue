@@ -1,32 +1,37 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-  id: number,
-  agentName: string,
-  agentType: string,
-  agentOrigin: string,
-}>(), {
-  id: 0,
-  agentName: '',
-  agentType: '',
-  agentOrigin: '',
-})
+import { computed } from "vue";
+import type { Agent, Ability } from "@/interfaces/AgentInterface";
+const props = defineProps<{
+  correlative: number;
+  agentData: Agent;
+}>();
+
+const getAbilitiesList = computed(() => {
+  return (abilities: Ability[]) => {
+    const abilitiesListName = abilities.map((ability) => ability.displayName);
+    return abilitiesListName.join(", ");
+  };
+});
 </script>
 
 <template>
   <div class="item-table">
-    <div class="item-table__value">{{ props.id }}</div>
-    <div class="item-table__value">{{ props.agentName }}</div>
-    <div class="item-table__value">{{ props.agentType }}</div>
-    <div class="item-table__value">{{ props.agentOrigin }}</div>
+    <div class="item-table__value">{{ props.correlative }}</div>
+    <div class="item-table__value">
+      {{ props.agentData.displayName }}
+    </div>
+    <div class="item-table__value">{{ props.agentData.role.displayName }}</div>
+    <div class="item-table__value">
+      {{ getAbilitiesList(props.agentData.abilities) }}
+    </div>
   </div>
 </template>
-
 
 <style scoped>
 .item-table {
   display: grid;
   grid-template-columns: 60px repeat(3, 1fr);
-  grid-template-rows: 45px;
+  grid-template-rows: 70px;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid var(--primary);
@@ -38,10 +43,8 @@ const props = withDefaults(defineProps<{
 }
 
 .item-table__value {
-  padding: 0 .8rem;
+  padding: 0.8rem;
   height: 100%;
-  display: inherit;
-  align-items: center;
   color: var(--text-primary);
   border-right: 1px solid var(--primary);
 }

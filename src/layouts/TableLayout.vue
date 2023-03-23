@@ -7,12 +7,14 @@
   </div>
 </template>
 
-
 <style scoped>
 .table {
   display: grid;
   width: 100%;
+  height: 100%;
   max-width: 850px;
+  max-height: 600px;
+  overflow: auto;
 }
 
 .table-body {

@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import TableLayout from '@/layouts/TableLayout.vue'
-import TheHeaderTable from '@/components/TheHeaderTable.vue'
-import TheItemTable from '@/components/TheItemTable.vue'
-const headers = ref([
-  'Nro.',
-  'Agent',
-  'Type',
-  'Origin',
-])
+import { ref } from "vue";
+import TableLayout from "@/layouts/TableLayout.vue";
+import TheHeaderTable from "@/components/TheHeaderTable.vue";
+import TheItemTable from "@/components/TheItemTable.vue";
+import useAgents from "@/composables/useAgents";
+
+const headers = ref(["Nro.", "Agent", "Role", "Abilities"]);
+
+const { agents } = useAgents();
 </script>
 
 <template>
@@ -19,14 +18,16 @@ const headers = ref([
         <TheHeaderTable :headers="headers"></TheHeaderTable>
       </template>
       <template v-slot:body>
-        <TheItemTable :id="1" :agent-name="'Sage'" :agent-origin="'EEUU'" :agent-type="'Support'" />
-        <TheItemTable :id="1" :agent-name="'Sage'" :agent-origin="'EEUU'" :agent-type="'Support'" />
-        <TheItemTable :id="1" :agent-name="'Sage'" :agent-origin="'EEUU'" :agent-type="'Support'" />
+        <TheItemTable
+          v-for="(agent, key) in agents"
+          :correlative="key + 1"
+          :key="agent.uuid"
+          :agent-data="agent"
+        />
       </template>
     </TableLayout>
   </div>
 </template>
-
 
 <style scoped>
 .characters {
