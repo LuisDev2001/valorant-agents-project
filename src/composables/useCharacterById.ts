@@ -1,5 +1,5 @@
 import { onMounted, ref } from 'vue'
-import valorantApi from "@/api/valorantApi"
+import { getAgentById } from '@/services/agents.service'
 import type { Agent } from '@/interfaces/AgentInterface'
 
 const agent = ref<Agent>()
@@ -7,13 +7,13 @@ const isLoading = ref(true)
 const useCharacterById = (uuid:string) => {
 
   onMounted(() => {
-    getCharacterById(uuid)
+    getAgentDataById(uuid)
   })
   
-  const getCharacterById = async (uuid:string) => {
+  const getAgentDataById = async (uuid:string) => {
     try {
       isLoading.value = true
-      const { data: { data } } = await valorantApi.get(`/agents/${uuid}`)
+      const data = await getAgentById(uuid)
       agent.value = data
       isLoading.value = false
     } catch (error) {

@@ -1,10 +1,12 @@
 <script setup lang="ts">
-
-const props = withDefaults(defineProps<{
-  headers: string[],
-}>(), {
-  headers: () => []
-})
+const props = withDefaults(
+  defineProps<{
+    headers: string[];
+  }>(),
+  {
+    headers: () => [],
+  }
+);
 </script>
 
 <template>
@@ -22,10 +24,12 @@ const props = withDefaults(defineProps<{
   grid-template-rows: 45px;
   align-items: center;
   background: var(--header-table-bg);
+  position: sticky;
+  top: 0;
 }
 
 .header-table__item {
-  padding: 0 .8rem;
+  padding: 0 0.8rem;
   font-weight: 600;
   height: 100%;
   display: inherit;

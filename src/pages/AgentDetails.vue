@@ -10,16 +10,18 @@ const { agent, isLoading } = useCharacterById(params.uuid);
 </script>
 
 <template>
-  <div class="agent-details" v-if="agent">
-    <RouterLink to="/agent/list">Regresar</RouterLink>
-    <div v-if="isLoading" class="agent-details__loader">Loading agent information...</div>
-    <div v-else class="agent-details__information">
-      <div>
-        <h2>{{ agent.displayName }}</h2>
-        <p>{{ agent.description }}</p>
+  <div v-if="isLoading" class="agent-details__loader">Loading agent information...</div>
+  <div v-else class="agent-details">
+    <template v-if="agent">
+      <RouterLink to="/agent/list">Regresar</RouterLink>
+      <div class="agent-details__information">
+        <div>
+          <h2>{{ agent.displayName }}</h2>
+          <p>{{ agent.description }}</p>
+        </div>
+        <img :src="agent.bustPortrait" :alt="agent.displayName" />
       </div>
-      <img :src="agent.bustPortrait" :alt="agent.displayName" />
-    </div>
+    </template>
   </div>
 </template>
 

@@ -48,3 +48,12 @@ export interface MediaList {
   wwise: string;
   wave:  string;
 }
+export interface ResponseAgents {
+  data: Agent[],
+  status: number,
+}
+
+export interface ResponseAgent {
+  data: Agent,
+  status: number,
+}
