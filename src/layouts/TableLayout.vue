@@ -14,4 +14,8 @@
   width: 100%;
   max-width: 850px;
 }
+
+.table-body {
+  background: var(--body-table-bg);
+}
 </style>

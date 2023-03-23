@@ -18,12 +18,22 @@ const props = withDefaults(defineProps<{
 <style scoped>
 .header-table {
   display: inherit;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 60px repeat(3, 1fr);
   grid-template-rows: 45px;
   align-items: center;
+  background: var(--header-table-bg);
 }
 
 .header-table__item {
   padding: 0 .8rem;
+  font-weight: 600;
+  height: 100%;
+  display: inherit;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.header-table__item:last-child {
+  border: 0;
 }
 </style>
