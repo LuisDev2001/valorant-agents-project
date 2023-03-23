@@ -13,7 +13,7 @@ const router = createRouter({
       component: () => import('../pages/AngentsView.vue')
     },
     {
-      path: '/character/:id',
+      path: '/character/list/:uuid',
       name: 'character-id',
       component: () => import('../pages/AgentDetails.vue')
     }

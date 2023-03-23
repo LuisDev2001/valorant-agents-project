@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { RouterLink } from "vue-router";
 import type { Agent, Ability } from "@/interfaces/AgentInterface";
 const props = defineProps<{
   correlative: number;
@@ -15,16 +16,25 @@ const getAbilitiesList = computed(() => {
 </script>
 
 <template>
-  <div class="item-table">
-    <div class="item-table__value">{{ props.correlative }}</div>
-    <div class="item-table__value">
-      {{ props.agentData.displayName }}
+  <RouterLink :to="`/character/list/${props.agentData.uuid}`">
+    <div class="item-table">
+      <div class="item-table__value">{{ props.correlative }}</div>
+      <div class="item-table__value">
+        <img :src="props.agentData.displayIcon" :alt="props.agentData.displayName" />
+        {{ props.agentData.displayName }}
+      </div>
+      <div class="item-table__value">
+        <img
+          :src="props.agentData.role.displayIcon"
+          :alt="props.agentData.role.displayName"
+        />
+        {{ props.agentData.role.displayName }}
+      </div>
+      <div class="item-table__value">
+        {{ getAbilitiesList(props.agentData.abilities) }}
+      </div>
     </div>
-    <div class="item-table__value">{{ props.agentData.role.displayName }}</div>
-    <div class="item-table__value">
-      {{ getAbilitiesList(props.agentData.abilities) }}
-    </div>
-  </div>
+  </RouterLink>
 </template>
 
 <style scoped>
@@ -47,6 +57,9 @@ const getAbilitiesList = computed(() => {
   height: 100%;
   color: var(--text-primary);
   border-right: 1px solid var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .item-table__value:last-child {

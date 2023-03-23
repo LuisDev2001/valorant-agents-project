@@ -4,31 +4,34 @@ import valorantApi from '@/api/valorantApi';
 
 const agents = ref<Agent[]>([])
 const isLoading = ref(true)
-const hasError = ref(false)
-const errorMessage = ref()
 
 const useAgents = () => {
 
   onMounted(() => {
-    getAgents()
+    setTimeout(() => {
+      getAgents()
+    }, 2000);
   })
 
   const getAgents = async () => {
     try {
+      isLoading.value = true
       const { data: { data } } = await valorantApi.get('/agents', {
         params: {
           isPlayableCharacter: true,
         }
       })
       agents.value = data
+      isLoading.value = false
     } catch (error) {
       return error
     }
   }
-  
 
   return {
+    //State
     agents,
+    isLoading,
     // Methods
 
     // Getters

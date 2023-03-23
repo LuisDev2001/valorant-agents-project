@@ -4,4 +4,6 @@
 
 #app {
   background: #0E1923;
+  height: 100vh;
+  padding: 4rem 2rem;
 }
