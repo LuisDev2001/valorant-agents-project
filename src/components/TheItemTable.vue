@@ -16,7 +16,7 @@ const getAbilitiesList = computed(() => {
 </script>
 
 <template>
-  <RouterLink :to="`/character/list/${props.agentData.uuid}`">
+  <RouterLink :to="`/agent/${props.agentData.uuid}`">
     <div class="item-table">
       <div class="item-table__value">{{ props.correlative }}</div>
       <div class="item-table__value">

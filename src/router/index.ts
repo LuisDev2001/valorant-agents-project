@@ -5,16 +5,16 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/character/list'
+      redirect: '/agent/list'
     },
     {
-      path: '/character/list',
-      name: 'character-list',
+      path: '/agent/list',
+      name: 'agent-list',
       component: () => import('../pages/AngentsView.vue')
     },
     {
-      path: '/character/list/:uuid',
-      name: 'character-id',
+      path: '/agent/:uuid',
+      name: 'agent-id',
       component: () => import('../pages/AgentDetails.vue')
     }
   ]
